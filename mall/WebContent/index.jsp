@@ -20,6 +20,7 @@
 	ArrayList<Category> categoryList2 = categoryDao.selectCategoryCkList();
 %>
 <body>
+<!-- 2번쨰클라이언트 -->
 	<div class="container">
 		<div style="margin-top: 30px;"></div>
 		<div> <!-- 최상단 검색 바 -->	
