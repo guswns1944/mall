@@ -25,54 +25,18 @@
 	Product product = new ProductDao().selectProductOne(productId);
 %>
 <div class="container">
-<div style="margin-top: 30px;"></div>
-		<div> <!-- 최상단 검색 바 -->	
-			<div class="row" style="text-align:center;">
-			 <div class="col-sm-4">
-			<h1>
-				<a style="text-decoration: none; color: black;" href="/mall/index.jsp">Goodee Shop</a>
-			</h1>
-		</div>
-		<div class="col-sm-5">
-			<h2>
-				<a style="text-decoration: none; color: black;" href="">상품 상세보기</a>
-			</h2>
-		</div>
-			<!-- 마이페이지, 장바구니 -->
-			  <div class="col-sm-3">
-			  <a>	
-			  <i class="fa fa-user-alt" style="font-size:36px"></i></a>		
-			  &nbsp;&nbsp;&nbsp;
-			  <a style= "color:black;" href="<%=request.getContextPath()%>/orders/myOrdersList.jsp">
-			  <i class='fas fa-shopping-cart' style='font-size:36px'></i></a>
-			   </div>
-			</div>
-		</div>
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	</div>
+	<div>
+		<jsp:include page="/inc/navbar.jsp"></jsp:include>
+	</div>	
 <br>
-	<form method="post" action="<%=request.getContextPath()%>/orders/addOrdersAction.jsp">
-		<input type="hidden" value="<%=product.getProductId() %>" name="productId">
-		<input type="hidden" value="<%=product.getProductPrice() %>" name="productPrice">
-		<div> 수량 :
-		<select name="ordersAmount">
-			<%
-			for(int i=1;i<11;i++){
-			%>
-				<option value="<%=i%>"><%=i%></option>
-			<%	
-			}
-			%>
-		</select>개
-		</div>
-		<div>
-			배송주소 : 
-			<input type= "text" name="ordersAddr" >
-		</div>
-		<button type="submit">주문</button>
-	</form>
-	<table class="table-sm table-bordered">
+	
+	<table class="table table-bordered" style="text-align: center;">
 		<tr>
-			<td>product_pic</td>
-			<td><img src="<%=request.getContextPath() %>/images/<%=product.getProductPic()%>" width="300px" height="300px"></td>
+			<td width="20%">product_pic</td>
+			<td width="80%"><img src="/mall-admin/images/<%=product.getProductPic()%>" width="300px" height="300px"></td>
 		</tr>
 		<tr>
 			<td>product_id</td>
@@ -95,6 +59,43 @@
 			<td><%=product.getProductSoldout() %></td>
 		</tr>
 	</table>
+	<%
+	if(product.getProductSoldout().equals("N")){
+	%>
+	<form method="post" action="<%=request.getContextPath()%>/orders/addOrdersAction.jsp">
+		<input type="hidden" value="<%=product.getProductId() %>" name="productId">
+		<input type="hidden" value="<%=product.getProductPrice() %>" name="productPrice">
+		<table class="table table-bordered" style="text-align: center;">
+			<tr> 
+				<td>수량 </td>
+				<td>
+				<select class="form-control" name="ordersAmount">
+				<%
+				for(int i=1;i<11;i++){
+				%>
+					<option value="<%=i%>"><%=i%>개</option>
+				<%	
+				}
+				%>
+				</select>
+				</td>
+			</tr>
+			<tr>
+				<td>배송주소  </td>
+				<td><input type= "text" class="form-control" name="ordersAddr" ></td>
+			</tr>		
+		</table>
+		<button class="btn btn-outline-secondary" style=float:right; type="submit">주문</button>
+	</form>
+	<%
+	}else{
+	%>
+	<form method="post" action="<%=request.getContextPath()%>/index.jsp">
+		<button class="btn btn-outline-secondary" type="submit">돌아가기</button>
+	</form>
+	<%
+	}
+	%>
 </div>
 </body>
 </html>

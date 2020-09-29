@@ -20,86 +20,34 @@
 	ArrayList<Category> categoryList2 = categoryDao.selectCategoryCkList();
 %>
 <body>
-<!-- 2번쨰클라이언트 -->
 	<div class="container">
-		<div style="margin-top: 30px;"></div>
-		<div> <!-- 최상단 검색 바 -->	
-			<div class="row" style="text-align:center;">
-			 <div class="col-sm-4">
-			<h1>
-				<a style="text-decoration: none; color: black;" href="/mall/index.jsp">Goodee Shop</a>
-			</h1>
+		<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
 		</div>
-		<div class="col-sm-5">
-			<form>
-				<table>
-					<tr>
-						<td width="400px">
-							<input type="text" class="form-control col-sm-15" name="search">
-						</td>
-						<td width="100px">
-							<button type="submit" class="btn btn-dark">검색</button>
-						</td>
-					</tr>
-				</table>
-				
-			</form>
-		</div>
-			<!-- 마이페이지, 장바구니 -->
-			  <div class="col-sm-3">
-			  <a>	
-			  <i class="fa fa-user-alt" style="font-size:36px"></i></a>		
-			  &nbsp;&nbsp;&nbsp;
-			  <a style= "color:black;" href="<%=request.getContextPath()%>/orders/myOrdersList.jsp">
-			  <i class='fas fa-shopping-cart' style='font-size:36px'></i></a>
-			   </div>
-			</div>
-		</div>
-		<div><!--  로그인/회원가입 메뉴바 -->
-			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-			  <!-- Brand/logo -->
-			  <!-- 로그아웃 상태 -->
-			  
-			  <%
-			  	  if(session.getAttribute("loginMemberEmail")==null){
-			  %>
-			  		  <ul class="navbar-nav mr-auto"></ul>
-					  <ul class="navbar-nav mr-right">
-					  <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member/login.jsp">로그인</a></li> 
-					  <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member/signup.jsp">회원가입</a></li> 
-			  		</ul>
-			  <%
-			  	  }else{
-			  %><!--로그인 상태  -->
-			 
-			  		  <ul class="navbar-nav mr-auto"></ul>
-					  <ul class="navbar-nav mr-right">
-					  <p><%=session.getAttribute("loginMemberEmail") %>님 반갑습니다.</p>
-					  <li class="nav-item"><a class="nav-link" href="#">회원정보</a></li> 
-					  <li class="nav-item"><a class="nav-link" href="<%=request.getContextPath()%>/member/logoutAction.jsp">로그아웃</a></li> 
-			  </ul>
-			  <%		  
-			  	  }
-			  %> 
-			</nav>
-		</div>
+		<div>
+		<jsp:include page="/inc/navbar.jsp"></jsp:include>
+		</div>	
 		<br>
 	<!-- 전체 카테고리3 이미지 배너 6 -->
 		<div>
 			<div class="row">
-			  <div class="col-sm-3">
-			  `	<div class = "btn-group-vertical"> 
+			  <div class="col-sm-4">
+			 
+			  		<div class="row">
 			   <%
 			   		for(Category c : categoryList1){
-			   	%>	
-			   			<a href="" class="btn btn-secondary"><%=c.getCategoryName() %></a>
-			   	<%			
-			   			
+			   %>	
+			   		<div class="col-sm-6 text-center">
+			   			<a href="<%=request.getContextPath() %>/product/productList.jsp?categoryId=<%=c.getCategoryId() %>" class="btn btn-secondary btn-block"><%=c.getCategoryName() %></a>
+			   			<br>
+			   		</div>	
+			   <%	
 			   		}
 			   %>
-			  	</div>
+			   </div>
 			  </div>
-			  <div class="col-sm-9">
+			  
+			  <div class="col-sm-8">
 			  		<img src="<%=request.getContextPath() %>/images/default.jpg" width="600" height="400">
 			  </div>
 			</div>
@@ -125,13 +73,7 @@
 		<!-- 카테고리별 추천상품 -->
 		<div>
 			<h3>오늘의 추천 상품<span class="badge badge-secondary"><%=today.get(Calendar.YEAR) %>.<%=today.get(Calendar.MONTH)+1 %>.<%=today.get(Calendar.DATE) %></span></h3>
-			<%
-			   		for(Category c : categoryList1){
-			   	%>
-			   			<a href="" class="btn btn-secondary"><%=c.getCategoryName() %></a>
-			   	<%		
-			   		}
-			   %>
+			
 		</div>
 		<%
 			ProductDao productDao = new ProductDao();
@@ -147,10 +89,10 @@
 			%>
 					<td>
 					<div class="card" style="width:350px">
-					  	<img class="card-img-top" src="/mall-admin/images/<%=p.getProductPic() %>" alt="Card image">
+					  	<a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId()%>"><img class="card-img-top" src="/mall-admin/images/<%=p.getProductPic() %>" alt="Card image"></a>
 					  	<div class="card-body">
 					    <h4 class="card-title"><a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId()%>"><%=p.getProductName() %></a></h4>
-					    <p class="card-text"><%=p.getProductPrice() %></p>
+					    <p class="card-text"><%=p.getProductPrice() %>원</p>
 
 						</div>
 					</div>
@@ -172,11 +114,15 @@
 			NoticeDao noticeDao = new NoticeDao();
 			ArrayList<Notice> noticeList = noticeDao.selectNoticeList();
 		%>
+		<br>
 		<div>
+			<h1>
+			<a style="text-decoration: none; color: black;" href="<%=request.getContextPath() %>/notice/noticeList.jsp">공지사항</a>
+			</h1>
 			<table class="table table-hover">
 				<thead class="thead-dark">
 					<tr>
-						<th>notice_id</th>
+						<th width="20%">notice_no</th>
 						<th>notice_title</th>
 					</tr>
 				</thead>
@@ -187,7 +133,7 @@
 						<tr>
 							<td><%=n.getNoticeId() %></td>
 							<td>
-							<a href="<%=request.getContextPath() %>/notice/noticeOne.jsp?noticeId=<%=n.getNoticeId()%>">
+							<a style="text-decoration: none; color: black;" href="<%=request.getContextPath() %>/notice/noticeOne.jsp?noticeId=<%=n.getNoticeId()%>">
 							<%=n.getNoticeTitle() %></a>
 							</td>
 						</tr>

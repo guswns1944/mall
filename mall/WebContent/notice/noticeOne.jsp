@@ -9,20 +9,28 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 </head>
 <body>
 <%
 	int noticeId = Integer.parseInt(request.getParameter("noticeId"));
 	NoticeDao noticeDao = new NoticeDao();
-	Notice notice = noticeDao.selectNoticeOne(noticeId);
-	
+	Notice notice = noticeDao.selectNoticeOne(noticeId);	
 %>
 	<div class="container">
+		<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+		</div>
+		<div>
+		<jsp:include page="/inc/navbar.jsp"></jsp:include>
+		</div>	
+		<br>
 		<!-- 공지 상세내용 -->
-		<table class="table table-bordered">
+		<table class="table table-bordered" style="text-align: center;">
 			<tr>
-				<td>제목 : </td>
-				<td><%=notice.getNoticeTitle() %></td>
+				<td width="20%">제목 : </td>
+				<td width="80%"><%=notice.getNoticeTitle() %></td>
 			</tr>
 			<tr>
 				<td>내용 : </td>

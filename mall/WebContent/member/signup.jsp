@@ -12,25 +12,36 @@
 
 <body>
 <div class="container">	
-	<h1>회원가입</h1>
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	</div>
+	<div>
+		<jsp:include page="/inc/navbar.jsp"></jsp:include>
+	</div>
+	<br>
+		<div style="text-align:center">
+			<h1>회원가입</h1>
+		</div>
 	<form method="post" action="<%=request.getContextPath()%>/member/signupAction.jsp">
 		<table class="table">
 			<tr>
 				<td>member_email</td>
-				<td><input type="text" name="memberEmail"></td>
+				<td><input class="form-control" type="text" name="memberEmail"></td>
 			</tr>
 			<tr>
 				<td>member_pw</td>
-				<td><input type="password" name="memberPw"></td>
+				<td><input class="form-control" type="password" name="memberPw"></td>
 			</tr>
 			<tr>
 				<td>member_name</td>
-				<td><input type="text" name="memberName"></td>
+				<td><input class="form-control" type="text" name="memberName"></td>
 			</tr>
-
+			<tr>
+				<td>&nbsp;</td>
+				<td><button class="btn btn-secondary" style=float:right; type="submit">회원가입</button></td>
+			</tr>
 		</table>
-			<button type="submit">회원가입</button>
-		</form>
+	</form>
 </div>
 
 </body>

@@ -4,10 +4,10 @@ import vo.*;
 import commons.*;
 public class MemberDao {
 	//로그인 
-	public String login(Member member) throws Exception{
+	public Member login(Member member) throws Exception{
+		Member m = new Member();
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String m = null;
 		String sql = "select member_email, member_name from member where member_email = ? and member_pw = ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, member.getMemberEmail());
@@ -15,7 +15,8 @@ public class MemberDao {
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) { 
 			//결과가 있다면 로그인 성공
-			m = rs.getNString("member_email");
+			m.setMemberEmail(rs.getString("member_email"));
+			m.setMemberName(rs.getString("member_name"));
 		}
 		conn.close();
 		return m;

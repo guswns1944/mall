@@ -15,11 +15,12 @@ if(session.getAttribute("loginMemberEmail")!=null){
 	paramMember.setMemberEmail(memberEmail);
 	paramMember.setMemberPw(memberPw);
 	MemberDao memberDao = new MemberDao();
-	String loginMemberEmail = memberDao.login(paramMember);
-	if(loginMemberEmail==null){
+	Member m = memberDao.login(paramMember);
+	if(m.getMemberEmail()==null){
 		response.sendRedirect(request.getContextPath()+"/member/login.jsp");
 	}else{
-		session.setAttribute("loginMemberEmail", loginMemberEmail);
+		session.setAttribute("loginMemberEmail", m.getMemberEmail());
+		session.setAttribute("loginMemberName", m.getMemberName());
 		response.sendRedirect(request.getContextPath()+"/index.jsp");
 	}
 	

@@ -25,30 +25,12 @@
 	ArrayList<OrdersAndProductAndMember> list = ordersDao.selectOrdersList(session.getAttribute("loginMemberEmail").toString());
 %>
 <div class="container">
-<br>
-	<div style="margin-top: 30px;"></div>
-		<div> <!-- 최상단 검색 바 -->	
-			<div class="row" style="text-align:center;">
-			<div class="col-sm-4">
-			<h1>
-				<a style="text-decoration: none; color: black;" href="/mall/index.jsp">Goodee Shop</a>
-			</h1>
-			</div>
-			<div class="col-sm-4">
-				<h2>
-				<a style="text-decoration: none; color: black;" href="<%=request.getContextPath() %>/orders/myOrdersList.jsp">주문 목록</a>
-				</h2>
-			</div>
-			<!-- 마이페이지, 장바구니 -->
-			  <div class="col-sm-4">
-			  <a>	
-			  <i class="fa fa-user-alt" style="font-size:36px"></i></a>		
-			  &nbsp;&nbsp;&nbsp;
-			  <a style= "color:black;" href="<%=request.getContextPath()%>/orders/myOrdersList.jsp">
-			  <i class='fas fa-shopping-cart' style='font-size:36px'></i></a>
-			  </div>
-			</div>
-		</div>
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	</div>
+	<div>
+		<jsp:include page="/inc/navbar.jsp"></jsp:include>
+	</div>
 		<br>
 	<table class="table table-hover">
 		<thead>

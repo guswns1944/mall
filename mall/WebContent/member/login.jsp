@@ -15,19 +15,32 @@ if(session.getAttribute("loginMemberEmail")!=null){
 }
 %>
 <div class="container">
-	<h1>로그인</h1>
+	<div>
+		<jsp:include page="/inc/menu.jsp"></jsp:include>
+	</div>
+	<div>
+		<jsp:include page="/inc/navbar.jsp"></jsp:include>
+	</div>
+		<br>
+			<div style="text-align:center">
+				<h1>로그인</h1>
+			</div>
 	<form method="post" action="<%=request.getContextPath()%>/member/loginAction.jsp">
-		<table class="table-md">
+		<table class="table-md" style="margin: auto;">
 			<tr>
-				<td>member_email</td>
-				<td><input type="text" name="memberEmail"></td>
+				<td>member_email : </td>
+				<td><input class="form-control" type="text" name="memberEmail"></td>
 			</tr>
 			<tr>
-				<td>member_pw</td>
-				<td><input type="password" name="memberPw"></td>
+				<td>member_pw : </td>
+				<td><input class="form-control" type="password" name="memberPw"></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td><button class="btn btn-secondary" style=float:right; type="submit">로그인</button></td>
 			</tr>
 		</table>
-		<button type="submit">로그인</button>
+		
 	</form>
 </div>
 </body>
