@@ -8,7 +8,8 @@
 </head>
 <body>
 <div style="margin-top: 30px;"></div>
-		<div> <!-- 최상단 검색 바 -->	
+		<div> <!-- 최상단 검색 바 
+					홈페이지 로고-->	
 			<div class="row" style="text-align:center;">
 			 <div class="col-sm-4">
 			<h1>
@@ -16,11 +17,12 @@
 			</h1>
 			</div>
 		<div class="col-sm-6">
+			<!-- 상품 검색 -->
 			<form method = "post" action="<%=request.getContextPath()%>/product/searchProduct.jsp">
 				<table>
 					<tr>
 						<td width="500px">
-							<input type="text" class="form-control col-sm-15" name="search">
+							<input type="text" class="form-control col-sm-15" name="search" placeholder="상품 검색">
 						</td>
 						<td width="100px">
 							<button type="submit" class="btn btn-dark">검색</button>

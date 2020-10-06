@@ -48,7 +48,7 @@
 			  </div>
 			  
 			  <div class="col-sm-8">
-			  		<img src="<%=request.getContextPath() %>/images/default.jpg" width="600" height="400">
+			  		<img src="<%=request.getContextPath() %>/images/goodee.jpg" width="600" height="400">
 			  </div>
 			</div>
 		</div>
@@ -89,7 +89,7 @@
 			%>
 					<td>
 					<div class="card" style="width:350px">
-					  	<a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId()%>"><img class="card-img-top" src="/mall-admin/images/<%=p.getProductPic() %>" alt="Card image"></a>
+					  	<a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId()%>"><img class="card-img-top" src="/mall-admin/images/<%=p.getProductPic() %>" alt="Card image" width = "300px" height="300px"></a>
 					  	<div class="card-body">
 					    <h4 class="card-title"><a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId()%>"><%=p.getProductName() %></a></h4>
 					    <p class="card-text"><%=p.getProductPrice() %>원</p>
