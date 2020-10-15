@@ -15,7 +15,18 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#btn").click(function(){
+			if($("#ordersAddr").val().length<1){
+				alert("배송주소 확인");
+				return;
+			}
+			$("#ordersForm").submit();
+		});
+	});
+</script>
 </head>
 <body>
 <br>
@@ -62,7 +73,7 @@
 	<%
 	if(product.getProductSoldout().equals("N")){
 	%>
-	<form method="post" action="<%=request.getContextPath()%>/orders/addOrdersAction.jsp">
+	<form method="post" action="<%=request.getContextPath()%>/orders/addOrdersAction.jsp" id="ordersForm">
 		<input type="hidden" value="<%=product.getProductId() %>" name="productId">
 		<input type="hidden" value="<%=product.getProductPrice() %>" name="productPrice">
 		<table class="table table-bordered" style="text-align: center;">
@@ -82,10 +93,10 @@
 			</tr>
 			<tr>
 				<td>배송주소  </td>
-				<td><input type= "text" class="form-control" name="ordersAddr" ></td>
+				<td><input type= "text" class="form-control" name="ordersAddr" id="ordersAddr"></td>
 			</tr>		
 		</table>
-		<button class="btn btn-outline-secondary" style=float:right; type="submit">주문</button>
+		<button class="btn btn-outline-secondary" style=float:right; id="btn" type="button">주문</button>
 	</form>
 	<%
 	}else{
