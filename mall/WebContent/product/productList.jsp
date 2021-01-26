@@ -37,7 +37,7 @@
 			%>
 					<td>
 					<div class="card" style="width:350px">
-					  	<img class="card-img-top" src="/mall-admin/images/<%=p.getProductPic() %>" alt="Card image">
+					  	<img class="card-img-top" src="/mall-admin/images/<%=p.getProductPic() %>" width = "300px" height="300px" alt="Card image">
 					  	<div class="card-body">
 					    <h4 class="card-title"><a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId()%>"><%=p.getProductName() %></a></h4>
 					    <p class="card-text"><%=p.getProductPrice() %>원</p>

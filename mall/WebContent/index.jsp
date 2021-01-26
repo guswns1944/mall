@@ -54,12 +54,16 @@
 		</div>
 		<br>
 		<!-- 추천 카테고리 --> 
+		<div>
+			<h3>추천 카테고리</h3>
+		</div>
+		<br>
 		<div class="row">
 			<%
 				for(Category c : categoryList2){
 			%>
 					<div class="col-sm-3">
-					<a href=""><img class="rounded-circle" alt="Cinque Terre" src="<%=request.getContextPath() %>/images/<%=c.getCategoryPic()%>"width= "200" height="200"></a>
+					<a href="<%=request.getContextPath() %>/product/productList.jsp?categoryId=<%=c.getCategoryId() %>"><img class="rounded-circle" alt="Cinque Terre" src="/mall-admin/images/<%=c.getCategoryPic()%>"width= "200" height="200"></a>
 					</div>
 			<%		
 				}
